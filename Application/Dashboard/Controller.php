@@ -8,6 +8,6 @@ class Controller extends \Application\Core\Controller
     {
       $model = new \Application\Dashboard\Model();
       $view  = new \Application\Dashboard\View();
-      $view->render( $model->getData("<h1>Isso é o Dashboard!</h1>") );
+      $view->render( $model->getData(["titulo" => "Isso é o Dashboard!"]));
     }
 }
