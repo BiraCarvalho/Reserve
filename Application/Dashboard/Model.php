@@ -1,5 +1,4 @@
 <?php
-
 namespace Application\Dashboard;
 use Application\Core;
 

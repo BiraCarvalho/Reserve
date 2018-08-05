@@ -9,6 +9,6 @@ class Controller extends \Application\Core\Controller
     {
       $model = new \Application\Ingresso\Model();
       $view  = new \Application\Ingresso\View();
-      $view->render( $model->getData("Ingresso") );
+      $view->render( $model->getData("<h1>Isso é o Ingresso!</h1>") );
     }
 }

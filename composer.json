@@ -11,8 +11,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Application\\": "Application"
+            "Application\\": "Application",
+            "Config\\": "Config"
         }
     },
-    "require": {}
+    "require": {
+        "psr/http-message": "^1.0",
+        "nikic/fast-route": "^1.3"
+    }
 }
