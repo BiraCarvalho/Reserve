@@ -1,6 +1,6 @@
 {
     "name": "biracarvalho/reserve",
-    "description": "Sistema de reserva de poltronas para eventos",
+    "description": "Sistema de reserva de poltronas para Espetaculos",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -17,6 +17,7 @@
     },
     "require": {
         "psr/http-message": "^1.0",
-        "nikic/fast-route": "^1.3"
+        "nikic/fast-route": "^1.3",
+        "league/plates": "^3.3"
     }
 }

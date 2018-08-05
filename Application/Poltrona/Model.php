@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Evento;
+namespace Application\Poltrona;
 use Application\Core;
 
 class Model extends \Application\Core\Model

@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Ingresso;
+namespace Application\Espetaculo;
 use Application\Core;
 
 class Model extends \Application\Core\Model

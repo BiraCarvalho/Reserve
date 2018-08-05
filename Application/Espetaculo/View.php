@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Evento;
+namespace Application\Espetaculo;
 use Application\Core;
 
 class View extends \Application\Core\View

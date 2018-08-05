@@ -6,6 +6,6 @@ class View extends \Application\Core\View
 {
     public function render($data)
     {
-        echo $data;
+        echo $this->getTemplate("Templates::Dashboard");
     }
 }

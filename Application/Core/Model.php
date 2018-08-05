@@ -4,8 +4,8 @@ namespace Application\Core;
 
 class Model
 {
-    public function getData($data)
+    public function __construct()
     {
-       return $data;
+        
     }
 }
