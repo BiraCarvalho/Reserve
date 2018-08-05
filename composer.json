@@ -1,0 +1,18 @@
+{
+    "name": "biracarvalho/reserve",
+    "description": "Sistema de reserva de poltronas para eventos",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ubiratã Carvalho",
+            "email": "birah.carvalho@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Application\\": "Application"
+        }
+    },
+    "require": {}
+}
