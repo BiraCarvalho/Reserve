@@ -9,11 +9,11 @@ class Controller extends \Application\Core\Controller
       //$model = new \Application\Dashboard\Model();
       
       $modelEspetaculo = new \Application\Espetaculo\Model();
-      //$data['espetaculos'] = $modelEspetaculo->getAll();
+      $data['espetaculos'] = $modelEspetaculo->getAll();
       
       $modelPoltrona   = new \Application\Poltrona\Model();
       
       $view  = new \Application\Dashboard\View();
-      $view->render(["data" => "teste"]);
+      $view->render($data);
     }
 }

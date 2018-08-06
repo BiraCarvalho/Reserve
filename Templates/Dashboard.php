@@ -1,5 +1,3 @@
-<?php var_dump($data); ?>
-
 <html>
 <head>
     <title>Reserve</title>
@@ -57,59 +55,42 @@
             <section class="col-lg-3">
             <h2>Espetáculos</h2><hr>
             
-            <button class="btn btn-lg btn-block btn-light mb-3" data-toggle="modal" data-target="#espetaculoForm">Adicionar Espetáculo</button>
+            <button class="btn btn-lg btn-block btn-light mb-3" data-toggle="modal" data-target="#espetaculoModalAdd">Adicionar Espetáculo</button>
 
             <div class="list-group" id="list-tab">
-                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
-                    <h5>Lago dos Cisnes</h5>
+                <?php $contador = 0; ?>
+                <?php foreach($espetaculos as $espetaculo){ ?>
+                <?php $active = $contador == 0 ? 'active' : ''; ?>
+                <a class="list-group-item list-group-item-action <?=$active?>" id="espetaculo-<?=$espetaculo['id']?>" data-toggle="list" href="#poltronas-<?=$espetaculo['id']?>" role="tab" aria-controls="home">
+                    <h5><?=$espetaculo['titulo']?></h5>
                     <div class="badges mb-2 p-2">
                         <span class="badge badge-light">Disponíveis <span>50</span></span>
                         <span class="badge badge-secondary">Reservadas <span>1</span></span>
                     </div>
                     <div class="buttons text-center">
-                        <button type="button" class="btn btn-light btn-sm btn-block" data-toggle="modal" data-target="#espetaculoForm">Editar Espetáculo</button>
+                        <button type="button" class="btn btn-light btn-sm btn-block" data-toggle="modal" data-target="#espetaculoModalEdit-<?=$espetaculo['id']?>">Editar Espetáculo</button>
                         <button type="button" class="btn btn-light btn-sm btn-block">Remover Espetáculo</button>                        
                     </div>
                 </a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">O Quebra Nozes</a>
-                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Romeu e Julieta</a>
-                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Macbet</a>
+                <?php $contador++; ?>
+                <?php } ?>
+
             </div>
             
-            <!-- Formulário de Espetáculos -->
-            <div class="modal fade" id="espetaculoForm" >
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="espetaculoForm">Espetáculo</h5>
-                            <button type="button" class="close" data-dismiss="modal" >
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/espetaculo/add" method="post"  >
-                                <div class="form-group">
-                                    <input class="form-control" name="titulo" id="espetaculo-titulo" value="" placeholder="Titulo">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control decimal" name="valor" id="espetaculo-valor" value="" placeholder="Valor">
-                                </div>
-                                <button class="btn btn-block btn-dark" type="submit">Salvar</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </section>
         
         <section class="col-lg-9">
             <h2>Poltronas</h2><hr>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="list-home">                    
-                    <h3>Lago do Cisnes</h3>
-                    <div class="ml-auto mb-3">Arrecadação R$<span>1000,00</span></div>
-        
+            
+                <?php $contador = 0; ?>
+                <?php foreach($espetaculos as $espetaculo){ ?>
+                <?php $active = $contador == 0 ? 'active' : ''; ?>   
+                <div class="tab-pane fade show <?=$active?>" id="poltronas-<?=$espetaculo['id']?>">                    
+                    
+                    <h3><?=$espetaculo['titulo']?></h3>
+                    <div class="ml-auto mb-3">Arrecadação R$<span>1000,00</span></div>        
+                    
                     <div class="poltronasGrid bg-width">
                         <div class="container-fluid">
                             <div class="row">
@@ -178,17 +159,67 @@
                             </div>                            
                         </div>
                     </div>
-
-
-
                 </div>
-                <div class="tab-pane fade" id="list-settings">O Quebra Nozes</div>
-                <div class="tab-pane fade" id="list-profile">Romeu e Julieta</div>
-                <div class="tab-pane fade" id="list-messages" >Macbet</div>
+
+                <!-- Formulário de Espetáculos - Edit -->
+                <div class="modal fade" id="espetaculoModalEdit-<?=$espetaculo['id']?>" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Editar Espetáculo</h5>
+                                <button type="button" class="close" data-dismiss="modal" >
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/espetaculo/edit" method="post" id="espetaculoFormEdit-<?=$espetaculo['id']?>" class="espetaculosForms" >
+                                    <input name="id" type="hidden" value="<?=$espetaculo['id']?>" >
+                                    <div class="form-group">
+                                        <input class="form-control" name="titulo" id="edit-espetaculo-titulo" value="<?=$espetaculo['titulo']?>" placeholder="Titulo">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control decimal" name="valor" id="edit-espetaculo-valor" value="<?=$espetaculo['valor']?>" placeholder="Valor">
+                                    </div>
+                                    <button class="btn btn-block btn-dark" type="submit">Salvar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <?php $contador++ ?>
+                <?php } ?>
+
             </div>
         </section>
 
         </div>
+
+        <!-- Formulário de Espetáculos - Add -->
+        <div class="modal fade" id="espetaculoModalAdd" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Adicionar Espetáculo</h5>
+                        <button type="button" class="close" data-dismiss="modal" >
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/espetaculo/add" method="post" id="espetaculoFormAdd" class="espetaculosForms">
+                            <div class="form-group">
+                                <input class="form-control" name="titulo" id="add-espetaculo-titulo" value="" placeholder="Titulo">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control decimal" name="valor" id="add-espetaculo-valor" value="" placeholder="Valor">
+                            </div>
+                            <button class="btn btn-block btn-dark" type="submit">Salvar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
     <script src="/assets/mascaras.js"></script>
     <script src="/node_modules/jquery/dist/jquery.min.js"></script>
@@ -201,7 +232,24 @@
             mascara(this, mvalor);
         })
 
-        $(".alert--flash").show( 300 ).delay( 2500 ).slideUp( 400 );
+        $(".alert--flash").show( 300 ).delay( 2500 ).slideUp( 400 )
+
+        $(".espetaculosForms").on('submit', function(event){
+            
+            var id = $(this).attr('id');
+
+            if( !$('#' + id +' input[name=titulo]').val().length ){
+                alert("Informe o Titulo");
+                return false;
+            }
+
+            if( !$('#' + id +' input[name=valor]').val().length ){
+                alert("Informe o Valor");
+                return false;
+            }
+
+        })
+
     })
     </script>
 </body>
