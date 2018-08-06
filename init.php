@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set("display_errors", true);
 
 require __DIR__ . '/vendor/autoload.php';
@@ -14,20 +16,21 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $grou
     $group->addGroup('', function (FastRoute\RouteCollector $route) {
         $controller = 'Application\Dashboard\Controller';
         $route->addRoute('GET', '/', $controller);
+        $route->addRoute('GET', '/dashboard', $controller);
     });
     
     $group->addGroup('/espetaculo', function (FastRoute\RouteCollector $route) {
         $controller = 'Application\Espetaculo\Controller';
         $route->addRoute('GET', '/',                    $controller);
-        $route->addRoute('GET', '/{method}',            $controller);
-        $route->addRoute('GET', '[/{method}/{id:\d+}]', $controller);
+        $route->addRoute(['GET','POST'], '/{method}',            $controller);
+        $route->addRoute(['GET','POST'], '[/{method}/{id:\d+}]', $controller);
     }); 
 
     $group->addGroup('/poltrona', function (FastRoute\RouteCollector $route) {
         $controller = 'Application\Poltrona\Controller';
         $route->addRoute('GET', '/',                    $controller);
-        $route->addRoute('GET', '/{method}',            $controller);
-        $route->addRoute('GET', '[/{method}/{id:\d+}]', $controller);
+        $route->addRoute(['GET','POST'], '/{method}',            $controller);
+        $route->addRoute(['GET','POST'], '[/{method}/{id:\d+}]', $controller);
     });        
 
 });

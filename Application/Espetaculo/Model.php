@@ -9,4 +9,13 @@ class Model extends \Application\Core\Model
     {
        return $data;
     }
+
+    public function getAll()
+    {
+      $queryBuilder = $this->conexaoDbal()->createQueryBuilder();
+      $queryBuilder->select('*')->from('espetaculos');
+      
+      $query = $queryBuilder->getSQL();
+      return $this->conexaoDbal()->fetchAll($query);
+    }    
 }

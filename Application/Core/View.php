@@ -13,8 +13,8 @@ class View
         $this->templates->addFolder('Templates',__DIR__ . "/../../Templates");
     }
     
-    public function getTemplate($template)
+    public function getTemplate($template,$data)
     {
-        return $this->templates->render($template);
+        return $this->templates->render($template,$data);
     }    
 }
