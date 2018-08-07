@@ -1,4 +1,4 @@
-# Sistema de Reserva de Poltronas em Espetáculos
+# Reserve - Sistema de Reserva
 
 ## Teste para desenvolvedor
 
