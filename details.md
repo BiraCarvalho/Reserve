@@ -24,6 +24,6 @@ Não há nenhuma restrição de acesso.
 
 Todos os requisitos solicitados estão dispostos e acessíveis em uma mesma página.
 
+Peço desculpas pelo descumprimento do prazo, mas infelizmente só pude dar início ao teste neste último final de semana.
 
-
-
+Agradeço a oportunidade e agradeço qualquer feedback.
