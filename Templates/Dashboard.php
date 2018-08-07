@@ -90,7 +90,7 @@
                 <div class="tab-pane fade show <?=$active?>" id="poltronas-<?=$espetaculo['id']?>">                    
                     
                     <h3><?=$espetaculo['titulo']?></h3>
-                    <div class="ml-auto mb-3">Arrecadação R$<span>1000,00</span></div>        
+                    <div class="ml-auto mb-3 valorTotal">Arrecadação R$<span>1000,00</span></div>        
                     
                     <div class="poltronasGrid bg-width" data-espetaculo="<?=$espetaculo['id']?>" >
                         <div class="container-fluid">
@@ -307,7 +307,9 @@
         var countPoltronas = function(espetaculo)
         {                        
             $('#espetaculo-' + espetaculo.id + ' .poltronasReservadas > span').text(espetaculo.totalOcupadas);
-            $('#espetaculo-' + espetaculo.id + ' .poltronasDisponiveis > span').text(poltronasTotal-espetaculo.totalOcupadas);
+            $('#espetaculo-' + espetaculo.id + ' .poltronasDisponiveis > span').text(poltronasTotal - espetaculo.totalOcupadas);
+            
+            $('#poltronas-'  + espetaculo.id + ' .valorTotal > span').text(espetaculo.valorTotal);
         }
 
         var refreshCountPoltronas = function(){
