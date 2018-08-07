@@ -26,4 +26,4 @@ Todos os requisitos solicitados estão dispostos e acessíveis em uma mesma pág
 
 Peço desculpas pelo descumprimento do prazo, mas infelizmente só pude dar início ao teste neste último final de semana.
 
-Agradeço a oportunidade e agradeço qualquer feedback.
+Agradeço a oportunidade e qualquer feedback sera bem-vindo.
