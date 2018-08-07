@@ -4,6 +4,7 @@ session_start();
 
 ini_set("display_errors", true);
 
+require 'config.php';
 require __DIR__ . '/vendor/autoload.php';
 
 use Application\Dashboard;
@@ -15,22 +16,24 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $grou
     
     $group->addGroup('', function (FastRoute\RouteCollector $route) {
         $controller = 'Application\Dashboard\Controller';
-        $route->addRoute('GET', '/', $controller);
-        $route->addRoute('GET', '/dashboard', $controller);
+        $route->addRoute('GET', '/',                   $controller);
+        $route->addRoute('GET', '/dashboard',          $controller);
+        $route->addRoute(['GET','POST'], '/dashboard/{method}', $controller);
     });
     
     $group->addGroup('/espetaculo', function (FastRoute\RouteCollector $route) {
         $controller = 'Application\Espetaculo\Controller';
-        $route->addRoute('GET', '/',                    $controller);
+        $route->addRoute('GET', '/',                             $controller);
         $route->addRoute(['GET','POST'], '/{method}',            $controller);
         $route->addRoute(['GET','POST'], '[/{method}/{id:\d+}]', $controller);
     }); 
 
     $group->addGroup('/poltrona', function (FastRoute\RouteCollector $route) {
         $controller = 'Application\Poltrona\Controller';
-        $route->addRoute('GET', '/',                    $controller);
-        $route->addRoute(['GET','POST'], '/{method}',            $controller);
-        $route->addRoute(['GET','POST'], '[/{method}/{id:\d+}]', $controller);
+        $route->addRoute('GET', '/',                                    $controller);
+        $route->addRoute(['GET','POST'], '/{method}',                   $controller);
+        $route->addRoute(['GET','POST'], '[/{method}/{id:\d+}]',        $controller);
+        $route->addRoute(['GET','POST'], '/{method}/{id:\d+}/{codigo}', $controller);
     });        
 
 });
@@ -69,7 +72,7 @@ switch ($routeInfo[0]) {
         $method = @$vars['method'] ?: 'index';
         unset($vars['method']);
         
-        call_user_func_array($handler . '::' . $method,$vars);
+        call_user_func_array($handler . '::' . $method, $vars);
 
         break;
 

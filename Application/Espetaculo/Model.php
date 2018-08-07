@@ -17,5 +17,6 @@ class Model extends \Application\Core\Model
       
       $query = $queryBuilder->getSQL();
       return $this->conexaoDbal()->fetchAll($query);
-    }    
+    }
+    
 }
