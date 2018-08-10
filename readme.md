@@ -1,4 +1,4 @@
-#Requisitos e dependências
+# Requisitos e dependências
 
 PHP7+
 
