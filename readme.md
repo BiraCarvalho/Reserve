@@ -12,7 +12,7 @@ NPM  - package.json está na pasta Public. No front-end foram utilizados o Boots
 **O index.php do projeto está na pasta /Public, após a instalação das dependencias rodar o servidor do php a partir desta pasta.**
 
 
-#Desafio proposto no processo seletivo
+# Desafio proposto no processo seletivo
 
 O desafio consiste em criar uma aplicação que gerencie os espetáculos e as reservas das poltronas de um teatro.
 
