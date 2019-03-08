@@ -9,15 +9,13 @@ class Controller
     header("Location:/dashboard", 301);
   }
 
-  public function insertAjax(int $id, string $poltrona)
+  public function markPoltrona(int $id, string $poltrona)
   {
     $request['espetaculo_id'] = (int)$id;
     $request['poltrona']      = filter_var($poltrona, FILTER_SANITIZE_MAGIC_QUOTES);
 
-    if( !\Core\Db::connection()->insert('poltronas', $request) ){
-
+    if(!Model::insert($request)){
       $return = ['danger','Não foi possível reservar esta poltrona!'];
-
     }
 
     $return = ['success','Poltrona reservada com sucesso!'];
@@ -27,12 +25,12 @@ class Controller
     return;
   }
 
-  public function deleteAjax(int $id, string $poltrona)
+  public function unmarkPoltrona(int $id, string $poltrona)
   {
     $request['espetaculo_id'] = (int)$id;
     $request['poltrona']      = filter_var($poltrona, FILTER_SANITIZE_MAGIC_QUOTES);
 
-    if( !\Core\Db::connection()->delete('poltronas', $request) ) {
+    if(!Model::delete($request)){
       $return = ['danger','Não foi possível remover a reserva esta poltrona!'];
     }
 

@@ -287,14 +287,14 @@
 
             if(poltrona.hasClass('desocupado')){
 
-                $.post("/poltrona/insertAjax/" + espetaculo + "/" + codigo, function(data){
+                $.post("/poltrona/markPoltrona/" + espetaculo + "/" + codigo, function(data){
                     alert(data[1])
                     tooglePoltrona(poltrona);
                 },"json")
 
             } else if( poltrona.hasClass('ocupado')){
 
-                $.post("/poltrona/deleteAjax/" + espetaculo + "/" + codigo, function(data){
+                $.post("/poltrona/unmarkPoltrona/" + espetaculo + "/" + codigo, function(data){
                     alert(data[1])
                     tooglePoltrona(poltrona);
                 },"json")
