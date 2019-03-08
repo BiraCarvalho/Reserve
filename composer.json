@@ -1,6 +1,6 @@
 {
     "name": "biracarvalho/reserve",
-    "description": "Sistema de reserva de poltronas para Espetaculos",
+    "description": "Sistema de reserva de poltronas para espetáculos",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -11,8 +11,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "Application\\": "Application",
-            "Config\\": "Config"
+            "Core\\": "core",
+            "Config\\": "config",
+            "Application\\": "application"
         }
     },
     "require": {
