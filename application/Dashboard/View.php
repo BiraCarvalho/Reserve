@@ -6,6 +6,6 @@ class View
 {
     public function render(array $data = [])
     {
-        echo \Core\View::getTemplate("Templates::Dashboard", $data);
+        return \Core\View::getTemplate("Templates::Dashboard", $data);
     }
 }
