@@ -14,11 +14,6 @@ class Model
         return \Core\Db::connection()->delete('poltronas', $request);
     }
 
-    public function getData($data)
-    {
-       return $data;
-    }
-
     public function getOcupadas()
     {
         $queryBuilder = \Core\Db::connection()->createQueryBuilder();
