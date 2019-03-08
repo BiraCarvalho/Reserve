@@ -6,14 +6,15 @@
     "authors": [
         {
             "name": "Ubiratã Carvalho",
-            "email": "birah.carvalho@gmail.com"
+            "email": "bira@biracarvalho.com.br"
         }
     ],
     "autoload": {
         "psr-4": {
             "Core\\": "core",
             "Config\\": "config",
-            "Application\\": "application"
+            "Application\\": "application",
+            "Helpers\\" : "helpers"
         }
     },
     "require": {
