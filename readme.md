@@ -33,10 +33,3 @@ NPM
   
 ### Financeiro 
   * Calcular o valor total de arrecadação.
-  
-## Como vamos avaliar
-  * Vamos subir a aplicação e acessar via localhost;
-  * Vamos cadastrar/editar/deletar/atualizar os espetáculo;
-  * Vamos reservar e cancelar as reservas das poltronas;
-  * Vamos verificar se o valor arrecadado esta preciso e correto.
-  
