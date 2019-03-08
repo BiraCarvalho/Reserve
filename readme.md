@@ -4,13 +4,13 @@ PHP7+
 
 MySQL 5.7 ou MariaDb
 
-Composer :
+**Composer**
 - psr/http-message
 - nikic/fast-route
 - league/plates
 - doctrine/dbal
 
-NPM
+**NPM**
 - bootstrap
 - jquery
 - popper.js
