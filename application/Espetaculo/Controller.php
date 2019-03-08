@@ -13,11 +13,11 @@ class Controller
     public function add()
     {
         $request['titulo'] = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_MAGIC_QUOTES);
-        $request['valor']  = filter_input(INPUT_POST, 'valor');
+        $request['valor']  = filter_input(INPUT_POST, 'valor',  FILTER_SANITIZE_STRING);
 
         //Formatação moeda de pt_br para iso
         $request['valor']  = explode(',',$request['valor']);
-        $request['valor']  =  $request['valor'][0] ."." . $request['valor'][1];
+        $request['valor']  = $request['valor'][0] ."." . $request['valor'][1];
 
         if( !\Core\Db::connection()->insert('espetaculos', $request) ){
             $_SESSION['__alert']['context'] = 'danger';
