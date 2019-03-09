@@ -32,7 +32,7 @@ class Controller
 
     $return = ['danger','Não foi possível remover a reserva esta poltrona!'];
 
-    if(!Model::delete($request)){
+    if(Model::delete($request)){
       $return = ['success','Reserva removida com sucesso!'];
     }
 
