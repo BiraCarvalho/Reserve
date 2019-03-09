@@ -7,7 +7,7 @@ class Controller
     public function index()
     {
       header("Location:/dashboard", 301);
-      die();
+      return;
     }
 
     public function add()
@@ -15,9 +15,7 @@ class Controller
         $request['titulo'] = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_MAGIC_QUOTES);
         $request['valor']  = filter_input(INPUT_POST, 'valor',  FILTER_SANITIZE_STRING);
 
-        //Formatação moeda de pt_br para iso
-        $request['valor']  = explode(',',$request['valor']);
-        $request['valor']  = $request['valor'][0] ."." . $request['valor'][1];
+        $request['valor'] = \Helpers\Format::currencyToIso($request['valor']);
 
         if( !\Core\Db::connection()->insert('espetaculos', $request) ){
             $_SESSION['__alert']['context'] = 'danger';
@@ -28,19 +26,17 @@ class Controller
         $_SESSION['__alert']['content'] = 'Espetáculo registrado com sucesso!';
 
         header("Location:/dashboard", 301);
-        die();
+        return;
     }
 
     public function update()
     {
-        $where['id'] = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $model = new Model;
 
-        $request['titulo'] = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_MAGIC_QUOTES);
-        $request['valor']  = filter_input(INPUT_POST, 'valor');
+        $where['id']       =  $model->id;
 
-        //Formatação moeda de pt_br para iso
-        $request['valor']  = explode(',',$request['valor']);
-        $request['valor']  =  $request['valor'][0] ."." . $request['valor'][1];
+        $request['titulo'] = $model->titulo;
+        $request['valor'] = \Helpers\Format::currencyToIso($model->valor);
 
         if(!\Core\Db::connection()->update('espetaculos', $request, $where) ){
             $_SESSION['__alert']['context'] = 'danger';
@@ -51,7 +47,7 @@ class Controller
         $_SESSION['__alert']['content'] = 'Espetáculo atualizado com sucesso!';
 
         header("Location:/dashboard", 301);
-        die();
+        return;
     }
 
     public function delete(int $id)
@@ -67,6 +63,6 @@ class Controller
         $_SESSION['__alert']['content'] = 'Espetáculo deletado com sucesso!';
 
         header("Location:/dashboard", 301);
-        die();
+        return;
     }
 }
